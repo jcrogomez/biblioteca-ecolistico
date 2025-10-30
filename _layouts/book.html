@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page.title }} · {{ site.title }}</title>
+    <style>
+      body{font-family:system-ui,-apple-system,Segoe UI,Roboto,max-width:780px;margin:28px auto;padding:0 16px}
+      header{margin:12px 0 18px 0}
+      .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+      .card{border:1px solid #eee;border-radius:12px;padding:16px;margin:16px 0}
+      .tag{font-size:.8rem;border:1px solid #ddd;border-radius:999px;padding:2px 8px}
+      a{color:inherit}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><a href="/">&larr; Inicio</a> · <a href="/collections/">Colecciones</a> ·
+        <a href="/collections/{{ page.collection }}/">Colección</a></div>
+      <h1>{{ page.title }}</h1>
+      <div class="tag">{{ page.status | default: "Disponible" }}</div>
+    </header>
+
+    <div class="meta">
+      <div class="card">
+        <div><strong>Autor:</strong> {{ page.author }}</div>
+        <div><strong>ISBN-13:</strong> {{ page.isbn13 }}</div>
+        <div><strong>Serie:</strong> {{ page.series }}</div>
+        <div><strong>Ubicación:</strong> {{ page.location }}</div>
+        <div><strong>Categoría:</strong> {{ page.category }}</div>
+        <div><strong>Idioma:</strong> {{ page.language | default: "es" }}</div>
+      </div>
+      <div class="card">
+        <strong>Relación con la colección</strong>
+        <div>{{ page.collection_role | markdownify }}</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <strong>Descripción</strong>
+      <div>{{ content }}</div>
+    </div>
+
+    <p style="font-size:.9rem;opacity:.7">
+      Colección: <code>{{ page.collection }}</code> ·
+      ID Ecolístico: <code>{{ page.id }}</code> ·
+      URL NFC: <code>{{ site.url }}{{ page.url }}</code>
+    </p>
+  </body>
+</html>
