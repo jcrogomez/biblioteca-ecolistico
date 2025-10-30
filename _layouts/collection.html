@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ page.title }} · Colección · {{ site.title }}</title>
+    <style>
+      body{font-family:system-ui,-apple-system,Segoe UI,Roboto,max-width:900px;margin:28px auto;padding:0 16px}
+      .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+      .card{border:1px solid #eee;border-radius:12px;padding:14px}
+      a{color:inherit;text-decoration:none}
+      h3{margin:.2rem 0}
+    </style>
+  </head>
+  <body>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.description }}</p>
+    <p><small>Prefijo de serie: <code>{{ page.id_prefix }}</code> · Política de préstamo: {{ page.loan_policy }}</small></p>
+
+    <h2>Libros</h2>
+    <div class="grid">
+      {{ content }}
+    </div>
+    <p><a href="/collections/">&larr; Todas las colecciones</a></p>
+  </body>
+</html>
