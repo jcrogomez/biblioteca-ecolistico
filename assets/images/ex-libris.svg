@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-labelledby="title desc">
+  <title id="title">Ex libris de la Biblioteca Ecolístico</title>
+  <desc id="desc">Sello circular con un libro abierto y raíces, rodeado por el texto Ex Libris, Biblioteca Ecolístico y Ex Natura, Llumen.</desc>
+  <defs>
+    <style>
+      text { font-family: "Libre Baskerville", "Times New Roman", serif; }
+      .outer-text { font-size: 34px; letter-spacing: 4px; }
+      .inner-label { font-size: 32px; font-weight: 600; letter-spacing: 2px; }
+      .inner-label tspan { font-size: 30px; letter-spacing: 3px; }
+    </style>
+    <path id="text-circle" d="M250 60a190 190 0 1 1 0 380a190 190 0 1 1 0-380z" />
+    <path id="text-circle-bottom" d="M250 440a190 190 0 1 1 0-380a190 190 0 1 1 0 380z" />
+  </defs>
+  <circle cx="250" cy="250" r="230" fill="#f8f1e3" stroke="#1f1b17" stroke-width="6" />
+  <circle cx="250" cy="250" r="205" fill="none" stroke="#1f1b17" stroke-width="4" />
+  <text fill="#1f1b17" class="outer-text">
+    <textPath href="#text-circle" startOffset="50%" text-anchor="middle">EX LIBRIS</textPath>
+  </text>
+  <text fill="#1f1b17" class="outer-text">
+    <textPath href="#text-circle-bottom" startOffset="50%" text-anchor="middle">EX NATURA, LLUMEN</textPath>
+  </text>
+  <g transform="translate(250 220)">
+    <path d="M-105 -38h90c15 0 25 8 25 20v80h-90c-15 0-25-8-25-20z" fill="none" stroke="#1f1b17" stroke-width="5" />
+    <path d="M-105 -38c0-12 10-20 25-20h90v100c0 12-10 20-25 20h-90z" fill="none" stroke="#1f1b17" stroke-width="5" />
+    <path d="M-10 -58l10 8l10-8" fill="none" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <path d="M-80 -18h60" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <path d="M-80 6h60" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <path d="M20 -18h60" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <path d="M20 6h60" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+  </g>
+  <g transform="translate(250 320)">
+    <path d="M0 0c-12 22-30 34-42 58" fill="none" stroke="#1f1b17" stroke-width="5" stroke-linecap="round" />
+    <path d="M0 0c10 24 26 34 36 58" fill="none" stroke="#1f1b17" stroke-width="5" stroke-linecap="round" />
+    <path d="M0 0c-4 16-16 28-24 44" fill="none" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <path d="M0 0c6 18 18 28 24 44" fill="none" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <path d="M0 0c0 14-6 26-6 40" fill="none" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+  </g>
+  <text x="250" y="318" fill="#1f1b17" text-anchor="middle" class="inner-label">
+    BIBLIOTECA
+    <tspan x="250" dy="34">ECOLÍSTICO</tspan>
+  </text>
+  <g transform="translate(400 250)">
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#1f1b17" stroke-width="4" />
+    <path d="M12 0h18" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <path d="M30 0v20" stroke="#1f1b17" stroke-width="4" stroke-linecap="round" />
+    <circle cx="30" cy="26" r="6" fill="none" stroke="#1f1b17" stroke-width="3" />
+  </g>
+</svg>
