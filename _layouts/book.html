@@ -11,6 +11,12 @@
       .card{border:1px solid #eee;border-radius:12px;padding:16px;margin:16px 0}
       .tag{font-size:.8rem;border:1px solid #ddd;border-radius:999px;padding:2px 8px}
       a{color:inherit}
+      .form-row{display:flex;flex-direction:column;margin-bottom:14px}
+      label{font-weight:600;margin-bottom:6px}
+      input{padding:10px;border:1px solid #ccc;border-radius:10px;font:inherit}
+      button{padding:10px 16px;border-radius:10px;border:1px solid #0b6e4f;background:#0b6e4f;color:#fff;font-weight:600;cursor:pointer}
+      button:hover{background:#09553c;border-color:#09553c}
+      .status{font-size:.85rem;margin-top:4px}
     </style>
   </head>
   <body>
@@ -26,13 +32,30 @@
         <div><strong>Autor:</strong> {{ page.author }}</div>
         <div><strong>ISBN-13:</strong> {{ page.isbn13 }}</div>
         <div><strong>Serie:</strong> {{ page.series }}</div>
-        <div><strong>Ubicación:</strong> {{ page.location }}</div>
+        <div><strong>Ubicación:</strong> <span data-location-display data-fallback="{{ page.location | default: 'Sin ubicación' }}">{{ page.location | default: "Sin ubicación" }}</span></div>
         <div><strong>Categoría:</strong> {{ page.category }}</div>
         <div><strong>Idioma:</strong> {{ page.language | default: "es" }}</div>
+        <div><strong>Custodia:</strong> <span data-holder-display data-fallback="{{ page.holder | default: 'Sin registro' }}">{{ page.holder | default: "Sin registro" }}</span></div>
       </div>
       <div class="card">
         <strong>Relación con la colección</strong>
         <div>{{ page.collection_role | markdownify }}</div>
+      </div>
+      <div class="card">
+        <strong>Seguimiento descentralizado</strong>
+        <p>Al abrir esta página te pediremos tu ubicación actual para actualizar el registro. También puedes editar manualmente los datos; los cambios se guardan en este dispositivo para consultas rápidas.</p>
+        <div class="form-row">
+          <label for="location-input">Ubicación actual</label>
+          <input id="location-input" type="text" inputmode="text" autocomplete="off" data-location-input placeholder="Ej. E1·A·2">
+        </div>
+        <div class="form-row">
+          <label for="holder-input">Persona responsable</label>
+          <input id="holder-input" type="text" inputmode="text" autocomplete="off" data-holder-input placeholder="Ej. Ana (Comunidad)">
+        </div>
+        <div class="form-row">
+          <button type="button" data-reset-state>Restablecer valores del catálogo</button>
+        </div>
+        <p class="status" data-update-status hidden></p>
       </div>
     </div>
 
@@ -46,5 +69,137 @@
       ID Ecolístico: <code>{{ page.id }}</code> ·
       URL NFC: <code>{{ site.url }}{{ page.url }}</code>
     </p>
+    <script type="application/json" id="book-defaults">
+      {{
+        {
+          "key": page.collection | append: "-" | append: page.id,
+          "location": page.location,
+          "holder": page.holder
+        } | jsonify
+      }}
+    </script>
+    <script>
+      (function() {
+        const defaultsElement = document.getElementById('book-defaults');
+        if (!defaultsElement) return;
+
+        let defaults;
+        try {
+          defaults = JSON.parse(defaultsElement.textContent || '{}');
+        } catch (error) {
+          console.error('No se pudieron leer los valores por defecto del libro.', error);
+          return;
+        }
+
+        defaults.location = defaults.location || '';
+        defaults.holder = defaults.holder || '';
+        const storageKey = `ecolistico::book::${defaults.key || 'sin-clave'}`;
+
+        let state = { ...defaults };
+        try {
+          const storedState = localStorage.getItem(storageKey);
+          if (storedState) {
+            const parsed = JSON.parse(storedState);
+            state = { ...defaults, ...parsed };
+          }
+        } catch (error) {
+          console.warn('No se pudieron cargar los datos locales de la biblioteca.', error);
+        }
+
+        const locationDisplay = document.querySelector('[data-location-display]');
+        const holderDisplay = document.querySelector('[data-holder-display]');
+        const locationInput = document.querySelector('[data-location-input]');
+        const holderInput = document.querySelector('[data-holder-input]');
+        const resetButton = document.querySelector('[data-reset-state]');
+        const status = document.querySelector('[data-update-status]');
+
+        if (!locationDisplay || !holderDisplay || !locationInput || !holderInput || !resetButton) {
+          return;
+        }
+
+        const fallbackLocation = locationDisplay.dataset.fallback || defaults.location || 'Sin ubicación';
+        const fallbackHolder = holderDisplay.dataset.fallback || 'Sin registro';
+        let statusTimeout;
+
+        function render() {
+          locationDisplay.textContent = state.location || fallbackLocation;
+          holderDisplay.textContent = state.holder || fallbackHolder;
+          locationInput.value = state.location || '';
+          holderInput.value = state.holder || '';
+        }
+
+        function showStatus(message, isError) {
+          if (!status) return;
+          status.textContent = message;
+          status.hidden = false;
+          status.style.color = isError ? '#b42318' : '#0b6e4f';
+          if (statusTimeout) clearTimeout(statusTimeout);
+          statusTimeout = setTimeout(() => {
+            status.hidden = true;
+          }, 3200);
+        }
+
+        function persist() {
+          try {
+            localStorage.setItem(storageKey, JSON.stringify(state));
+            showStatus('Cambios guardados en este dispositivo.');
+          } catch (error) {
+            showStatus('No se pudo guardar la información localmente.', true);
+          }
+        }
+
+        function updateState(key, value) {
+          state = { ...state, [key]: value.trim() };
+          render();
+          persist();
+        }
+
+        function requestCurrentLocation() {
+          if (!('geolocation' in navigator)) {
+            showStatus('Este dispositivo no admite geolocalización automática.', true);
+            return;
+          }
+
+          showStatus('Solicitando tu ubicación actual…');
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              const formatted = `Lat ${latitude.toFixed(5)}, Lon ${longitude.toFixed(5)}`;
+              updateState('location', formatted);
+              showStatus('Ubicación actualizada con tu posición.');
+            },
+            (error) => {
+              let message = 'No se pudo obtener tu ubicación.';
+              if (error.code === error.PERMISSION_DENIED) {
+                message = 'No se obtuvo permiso para acceder a tu ubicación.';
+              }
+              showStatus(message, true);
+            },
+            {
+              enableHighAccuracy: false,
+              maximumAge: 300000,
+              timeout: 10000
+            }
+          );
+        }
+
+        locationInput.addEventListener('input', (event) => {
+          updateState('location', event.target.value);
+        });
+
+        holderInput.addEventListener('input', (event) => {
+          updateState('holder', event.target.value);
+        });
+
+        resetButton.addEventListener('click', () => {
+          state = { ...defaults };
+          render();
+          persist();
+        });
+
+        render();
+        requestCurrentLocation();
+      })();
+    </script>
   </body>
 </html>
