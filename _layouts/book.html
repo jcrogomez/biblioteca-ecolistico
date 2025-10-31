@@ -70,13 +70,11 @@
       URL NFC: <code>{{ site.url }}{{ page.url }}</code>
     </p>
     <script type="application/json" id="book-defaults">
-      {{
-        {
-          "key": page.collection | append: "-" | append: page.id,
-          "location": page.location,
-          "holder": page.holder
-        } | jsonify
-      }}
+      {
+        "key": {{ page.collection | append: "-" | append: page.id | jsonify }},
+        "location": {{ page.location | jsonify }},
+        "holder": {{ page.holder | jsonify }}
+      }
     </script>
     <script>
       (function() {
