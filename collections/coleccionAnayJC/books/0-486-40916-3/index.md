@@ -1,6 +1,6 @@
 ---
 layout: book
-collection: matematicas
+collection: coleccionAnayJC
 title: "Mathematics, Its Content, Methods, and Meaning"
 id: 0-486-40916-3
 author: "A.D. Aleksandrov, A.N. Kolmogorov, M.A. Lavrent'ev (eds.)"
