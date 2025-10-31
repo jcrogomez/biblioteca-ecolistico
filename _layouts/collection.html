@@ -10,6 +10,8 @@
       .card{border:1px solid #eee;border-radius:12px;padding:14px}
       a{color:inherit;text-decoration:none}
       h3{margin:.2rem 0}
+      .meta{margin:.2rem 0;color:#444;font-size:.95rem}
+      .intro{margin:1.5rem 0}
     </style>
   </head>
   <body>
@@ -17,10 +19,39 @@
     <p>{{ page.description }}</p>
     <p><small>Prefijo de serie: <code>{{ page.id_prefix }}</code> · Política de préstamo: {{ page.loan_policy }}</small></p>
 
-    <h2>Libros</h2>
-    <div class="grid">
-      {{ content }}
-    </div>
+    {% assign body_content = content | strip %}
+    {% if body_content != '' %}
+      <div class="intro">
+        {{ content }}
+      </div>
+    {% endif %}
+
+    {% assign books = site.pages | where: 'layout', 'book' | where: 'collection', page.slug | sort: 'title' %}
+    {% if books.size > 0 %}
+      <h2>Libros</h2>
+      <div class="grid">
+        {% for book in books %}
+          <article class="card">
+            <h3><a href="{{ book.url | relative_url }}">{{ book.title }}</a></h3>
+            {% if book.author %}
+              <p class="meta">{{ book.author }}</p>
+            {% endif %}
+            {% if book.id %}
+              <p class="meta"><small>{{ book.id }}</small></p>
+            {% endif %}
+            {% if book.collection_role %}
+              {% assign summary = book.collection_role | markdownify | strip_html | strip %}
+              {% if summary != '' %}
+                <p>{{ summary }}</p>
+              {% endif %}
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p><em>No hay libros catalogados en esta colección todavía.</em></p>
+    {% endif %}
+
     <p><a href="/collections/">&larr; Todas las colecciones</a></p>
   </body>
 </html>

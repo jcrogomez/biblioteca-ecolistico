@@ -9,5 +9,6 @@ owner: "Ecolístico"
 id_prefix: ELB-SM
 loan_policy: "21 días; 1 renovación"
 ---
-<!-- Lista de libros de esta colección (manual al inicio) -->
-- [Staying Sober: A Guide for Relapse Prevention (978-0-8309-0459-4)](/collections/salud-mental/books/978-0-8309-0459-4/)
+{% comment %}
+El listado de libros se genera automáticamente a partir de los archivos en collections/salud-mental/books/.
+{% endcomment %}
