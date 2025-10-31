@@ -4,7 +4,7 @@ layout: default
 ---
 
 <div align="center">
-  <img src="/assets/sello-biblioteca-ecolistico-dorado.png" alt="Sello Biblioteca Ecolístico" width="260" style="margin-top:20px; margin-bottom:10px;">
+  <img src="/assets/images/sello-dorado.png" alt="Sello Biblioteca Ecolístico" width="260" style="margin-top:20px; margin-bottom:10px;">
   
   <h1 style="font-family: 'Cinzel', serif; font-weight:600; letter-spacing:1px;">Biblioteca Ecolístico</h1>
   
