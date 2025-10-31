@@ -2,29 +2,73 @@
 title: Biblioteca Ecolístico
 layout: default
 ---
+<section class="hero">
+  <div class="hero__content">
+    <span class="hero__eyebrow">Archivo vivo comunitario</span>
+    <h1>Biblioteca Ecolístico</h1>
+    <p class="hero__summary">
+      Un archivo que respira, donde los libros son semillas y la custodia es un acto colectivo. Desde el corazón
+      del bosque digital mapeamos recorridos, afectos y guardianes de conocimiento regenerativo.
+    </p>
+    <div class="cta-group">
+      <a class="btn btn--primary" href="/collections/">Explorar colecciones</a>
+      <a class="btn btn--ghost" href="https://biblioteca.ecolistico.com">Visitar el sitio completo</a>
+    </div>
+  </div>
+  <figure class="hero__seal">
+    <img src="/assets/images/sellodorado.png" alt="Sello dorado de la Biblioteca Ecolístico">
+  </figure>
+</section>
 
-<div align="center">
-  <img src="/assets/images/sello-dorado.png" alt="Sello Biblioteca Ecolístico" width="260" style="margin-top:20px; margin-bottom:10px;">
-  
-  <h1 style="font-family: 'Cinzel', serif; font-weight:600; letter-spacing:1px;">Biblioteca Ecolístico</h1>
-  
-  <p style="font-style: italic; color: #a87c3f; font-size: 1.2em; margin-top:-10px;">Ex Natura, Lumen</p>
-
-  <hr style="width: 50%; border: 0; border-top: 1px solid #d8b46a; margin: 20px auto;">
-</div>
-
-<section style="text-align:center; max-width:600px; margin:auto; line-height:1.6; color:#333;">
+<section class="section">
+  <h2 class="section__title">Un santuario para las tramas ecológicas</h2>
   <p>
-    Bienvenido a la <strong>Biblioteca Ecolístico</strong> — un archivo vivo donde la sabiduría enraíza y florece.
-    Cada libro, cada enlace y cada idea aquí son parte de un ecosistema de conocimiento que crece entre la tierra y la nube.
-  </p>
-
-  <p>
-    🌱 <a href="/collections/" style="color:#a87c3f; font-weight:500;">Explorar Colecciones</a>
+    La Biblioteca Ecolístico acompaña procesos de aprendizaje regenerativo y documentación afectiva. Cada registro
+    describe un libro, un enlace, un gesto vivo que invita a custodiar y compartir con responsabilidad.
   </p>
 </section>
 
-<footer style="text-align:center; font-size:0.9em; color:#777; margin-top:30px;">
-  <p><em>Ex Libris · Biblioteca Ecolístico</em></p>
-  <p><a href="https://biblioteca.ecolistico.com" style="color:#a87c3f;">biblioteca.ecolistico.com</a></p>
-</footer>
+<section class="feature-grid" aria-label="Pilares de la biblioteca">
+  <article class="feature-card">
+    <h3>Custodia circular</h3>
+    <p>
+      Seguimiento de guardianes y ubicaciones en tiempo real, fomentando redes de confianza que honran el cuidado
+      interdependiente de cada ejemplar.
+    </p>
+  </article>
+  <article class="feature-card">
+    <h3>Cartografías vivas</h3>
+    <p>
+      Colecciones curadas que entrelazan tecnologías, salud, espiritualidad y justicia climática para tejer nuevas
+      rutas de estudio y acompañamiento.
+    </p>
+  </article>
+  <article class="feature-card">
+    <h3>Memoria que florece</h3>
+    <p>
+      Narrativas, anotaciones y rituales que documentan cómo el conocimiento se arraiga en comunidades diversas,
+      preservando voces locales y saberes ancestrales.
+    </p>
+  </article>
+  <article class="feature-card">
+    <div class="seal-card" role="img" aria-label="Sello Ex Libris de la Biblioteca Ecolístico">
+      <img src="/assets/images/exlibris.png" alt="">
+    </div>
+    <p>
+      El sello Ex Libris acompaña cada préstamo, recordando que el conocimiento viaja con gratitud y vuelve para
+      seguir compartiéndose.
+    </p>
+  </article>
+</section>
+
+<section class="callout">
+  <h2 class="section__title">¿Quieres sumar tu propia colección?</h2>
+  <p>
+    Escríbenos para articular bibliotecas barriales, nodos rurales o acervos personales. Diseñamos estrategias de
+    catalogación y tecnología apropiada para cada territorio.
+  </p>
+  <div class="cta-group">
+    <a class="btn btn--primary" href="mailto:hola@ecolistico.com">Proponer una colección</a>
+    <a class="btn btn--ghost" href="https://ecolistico.com">Conoce Ecolístico</a>
+  </div>
+</section>
