@@ -113,19 +113,26 @@
         const resetButton = document.querySelector('[data-reset-state]');
         const status = document.querySelector('[data-update-status]');
 
-        if (!locationDisplay || !holderDisplay || !locationInput || !holderInput || !resetButton) {
+        if (!locationDisplay) {
           return;
         }
 
         const fallbackLocation = locationDisplay.dataset.fallback || defaults.location || 'Sin ubicación';
-        const fallbackHolder = holderDisplay.dataset.fallback || 'Sin registro';
+        const fallbackHolder = (holderDisplay && holderDisplay.dataset.fallback) || defaults.holder || 'Sin registro';
         let statusTimeout;
 
-        function render() {
+        function render(options = {}) {
+          const { skipLocationInput = false, skipHolderInput = false } = options;
           locationDisplay.textContent = state.location || fallbackLocation;
-          holderDisplay.textContent = state.holder || fallbackHolder;
-          locationInput.value = state.location || '';
-          holderInput.value = state.holder || '';
+          if (holderDisplay) {
+            holderDisplay.textContent = state.holder || fallbackHolder;
+          }
+          if (!skipLocationInput && locationInput) {
+            locationInput.value = state.location || '';
+          }
+          if (!skipHolderInput && holderInput) {
+            holderInput.value = state.holder || '';
+          }
         }
 
         function showStatus(message, isError) {
@@ -148,9 +155,9 @@
           }
         }
 
-        function updateState(key, value) {
+        function updateState(key, value, renderOptions) {
           state = { ...state, [key]: value.trim() };
-          render();
+          render(renderOptions);
           persist();
         }
 
@@ -183,19 +190,25 @@
           );
         }
 
-        locationInput.addEventListener('input', (event) => {
-          updateState('location', event.target.value);
-        });
+        if (locationInput) {
+          locationInput.addEventListener('input', (event) => {
+            updateState('location', event.target.value, { skipLocationInput: true });
+          });
+        }
 
-        holderInput.addEventListener('input', (event) => {
-          updateState('holder', event.target.value);
-        });
+        if (holderInput) {
+          holderInput.addEventListener('input', (event) => {
+            updateState('holder', event.target.value, { skipHolderInput: true });
+          });
+        }
 
-        resetButton.addEventListener('click', () => {
-          state = { ...defaults };
-          render();
-          persist();
-        });
+        if (resetButton) {
+          resetButton.addEventListener('click', () => {
+            state = { ...defaults };
+            render();
+            persist();
+          });
+        }
 
         render();
         requestCurrentLocation();
