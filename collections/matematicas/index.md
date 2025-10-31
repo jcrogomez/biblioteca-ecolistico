@@ -7,7 +7,7 @@ description: >-
   del pensamiento matemático.
 owner: "Ecolístico"
 id_prefix: ELB-MAT
-loan_policy: "28 días; 1 renovación"
+loan_policy: "consulta"
 ---
 {% comment %}
 El listado de libros se genera automáticamente a partir de los archivos en collections/matematicas/books/.
