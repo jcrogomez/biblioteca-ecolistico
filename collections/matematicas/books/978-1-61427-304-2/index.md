@@ -1,7 +1,7 @@
 ---
 layout: book
 collection: matematicas
-title: "Elements of the Theory of Functions and Functional Analysis, Volume 1"
+title: "Elements of the Theory of Functions and Functional Analysis, Vols 1 & 2"
 id: 978-1-61427-304-2
 author: "A. N. Kolmogorov, S. V. Fomin"
 isbn13: 978-1-61427-304-2
@@ -19,6 +19,21 @@ collection_role: >-
 **Elements of the Theory of Functions and Functional Analysis**
 
 Volume 1 · Metric and Normed Spaces
+Elements of the Theory of Functions and Functional Analysis
+
+Volume 2
+Measure. The Lebesgue Integral.
+Hilbert Space
+By
+A. N. KOLMOGOROV AND S. V. FOMIN
+TRANSLATED FROM THE FIRST (1960) RUSSIAN EDITION
+by
+HYMAN KAMEL AND HORACE KOMM
+Department of Mathematics
+Rensselaer Polytechnic Institute
+Martino Publishing
+Mansfield Centre, CT
+2012
 
 A. N. Kolmogorov and S. V. Fomin
 
