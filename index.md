@@ -7,8 +7,11 @@ layout: default
     <span class="hero__eyebrow">Archivo vivo comunitario</span>
     <h1>Biblioteca Ecolístico</h1>
     <p class="hero__summary">
-      Un archivo que respira, donde los libros son semillas y la custodia es un acto colectivo. Desde el corazón
-      del bosque digital mapeamos recorridos, afectos y guardianes de conocimiento regenerativo.
+      Un archivo que respira, donde los libros son semillas y la custodia es un acto colectivo. Hoy tejemos
+      <strong>{{ site.data.metrics.books | default: '—' }}</strong> libros vivos en
+      <strong>{{ site.data.metrics.collections | default: '—' }}</strong> colecciones, celebrando
+      <strong>{{ site.data.metrics.language_total | default: '—' }}</strong> lenguas y más de
+      <strong>{{ site.data.metrics.tags | default: '—' }}</strong> hilos temáticos que conectan saberes regenerativos.
     </p>
     <div class="cta-group">
       <a class="btn btn--primary" href="/collections/">Explorar colecciones</a>
@@ -18,6 +21,30 @@ layout: default
   <figure class="hero__seal">
     <img src="/assets/images/sellodorado.png" alt="Sello dorado de la Biblioteca Ecolístico">
   </figure>
+</section>
+
+{% assign metrics = site.data.metrics | default: {} %}
+<section class="metrics" aria-label="Indicadores de la biblioteca">
+  <article class="metric-card">
+    <span class="metric-card__value">{{ metrics.books | default: '—' }}</span>
+    <span class="metric-card__label">Libros vivos</span>
+    <p class="metric-card__meta">Custodiados y descritos con anotaciones comunitarias.</p>
+  </article>
+  <article class="metric-card">
+    <span class="metric-card__value">{{ metrics.collections | default: '—' }}</span>
+    <span class="metric-card__label">Colecciones curadas</span>
+    <p class="metric-card__meta">Recorridos temáticos que articulan tecnologías, justicia climática y sanación.</p>
+  </article>
+  <article class="metric-card">
+    <span class="metric-card__value">{{ metrics.visits_display | default: metrics.visits | default: '—' }}</span>
+    <span class="metric-card__label">Visitas al catálogo</span>
+    <p class="metric-card__meta">Navegaciones registradas en el ecosistema digital de la biblioteca.</p>
+  </article>
+  <article class="metric-card">
+    <span class="metric-card__value">{{ metrics.authors | default: '—' }}</span>
+    <span class="metric-card__label">Autorxs y colectivos</span>
+    <p class="metric-card__meta">Redes de conocimiento que sostienen la memoria y la custodia circular.</p>
+  </article>
 </section>
 
 <section class="section">
