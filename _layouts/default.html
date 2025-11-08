@@ -200,6 +200,59 @@
         filter: drop-shadow(0 16px 28px rgba(63, 43, 0, 0.24));
       }
 
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 18px;
+        margin-bottom: 56px;
+      }
+
+      .metric-card {
+        position: relative;
+        padding: 24px;
+        border-radius: 24px;
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(239, 220, 180, 0.52));
+        border: 1px solid rgba(181, 138, 54, 0.28);
+        box-shadow: 0 20px 36px -28px rgba(71, 48, 2, 0.65);
+        overflow: hidden;
+      }
+
+      .metric-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top right, rgba(181, 138, 54, 0.16), transparent 60%);
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+
+      .metric-card__value {
+        position: relative;
+        font-size: clamp(2rem, 3.6vw, 2.6rem);
+        font-weight: 700;
+        display: block;
+        color: var(--accent-strong);
+      }
+
+      .metric-card__label {
+        position: relative;
+        display: block;
+        margin-top: 6px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: rgba(59, 46, 20, 0.72);
+      }
+
+      .metric-card__meta {
+        position: relative;
+        margin-top: 14px;
+        margin-bottom: 0;
+        font-size: 0.95rem;
+        color: rgba(59, 46, 20, 0.72);
+      }
+
       .collection-hero {
         display: grid;
         gap: 24px;
