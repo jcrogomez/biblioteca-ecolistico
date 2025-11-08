@@ -10,3 +10,4 @@ layout: default
 - [Geociencias & Minerales](/collections/geociencias/)
 - [Matemáticas](/collections/matematicas/)
 - [Salud Mental & Recuperación](/collections/salud-mental/)
+- [Consciencia](/collections/consciencia/)
