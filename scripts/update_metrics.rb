@@ -45,9 +45,14 @@ metrics = {
 }
 
 if File.exist?(METRICS_PATH)
-  existing = YAML.load_file(METRICS_PATH) || {}
-  metrics['visits'] = existing['visits'] if existing.key?('visits')
-  metrics['visits_display'] = existing['visits_display'] if existing.key?('visits_display')
+  begin
+    existing_raw = File.read(METRICS_PATH)
+    existing = YAML.safe_load(existing_raw, permitted_classes: [Time], aliases: false) || {}
+    metrics['visits'] = existing['visits'] if existing.key?('visits')
+    metrics['visits_display'] = existing['visits_display'] if existing.key?('visits_display')
+  rescue Psych::Exception
+    warn 'Warning: _data/metrics.yml has invalid YAML; preserving computed metrics only.'
+  end
 end
 
 if ENV['VISITS_COUNT']
